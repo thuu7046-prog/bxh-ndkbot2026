@@ -1,423 +1,506 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BẢNG XẾP HẠNG NDK BOT</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg-color: #030508;
-            --card-bg: rgba(8, 12, 20, 0.6);
-            --border-color: rgba(255, 255, 255, 0.05);
-            --border-cyan: rgba(0, 240, 255, 0.3);
-            --primary-cyan: #00f0ff;
-            --text-main: #d0dbe7;
-            --text-dim: #4a5a70;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NDK BOT - Lịch sử BXH</title>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
 
-        body { 
-            font-family: 'Chakra Petch', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main); 
-            padding: 20px 15px; 
-            min-height: 100vh;
-            user-select: none;
-            -webkit-user-select: none;
-        }
+<style>
+:root {
+  --bg: #030711;
+  --cyan: #27e8ff;
+  --blue: #147bff;
+  --red: #ff253d;
+  --text: #eaf7ff;
+}
 
-        .app-container {
-            max-width: 650px;
-            margin: 0 auto;
-        }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-        /* Top Bar Layout matching image */
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 25px;
-            padding: 0 5px;
-        }
+body {
+  background:
+    radial-gradient(ellipse at 0% 10%, #ff19351c, transparent 35%),
+    radial-gradient(ellipse at 100% 10%, #006aff30, transparent 40%),
+    #030711;
+  color: var(--text);
+  font-family: 'Chakra Petch', sans-serif;
+  min-height: 100vh;
+  padding: 15px;
+}
 
-        .header-title {
-            font-size: 13px;
-            font-weight: 700;
-            color: #7b8e9f;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
+.container {
+  max-width: 1100px;
+  margin: auto;
+}
 
-        .top-right-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 22px;
+  border: 1px solid #1677a8;
+  border-radius: 18px;
+  background: linear-gradient(110deg, #260912, #030b19 50%, #061c42);
+  box-shadow: 0 0 25px #008cff20;
+  margin-bottom: 22px;
+  text-align: center;
+}
 
-        .search-box {
-            position: relative;
-        }
+.logo {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--cyan);
+  box-shadow: 0 0 20px #008cff66;
+}
 
-        .search-box input {
-            background: #090e17;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: var(--text-main);
-            padding: 8px 12px 8px 32px;
-            border-radius: 8px;
-            font-family: 'Chakra Petch', sans-serif;
-            font-size: 13px;
-            outline: none;
-            width: 150px;
-            transition: all 0.3s ease;
-        }
+.brand h1 {
+  font: 900 clamp(24px, 5vw, 42px) Orbitron;
+  margin: 8px 0;
+}
 
-        .search-box input:focus {
-            border-color: var(--primary-cyan);
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
-        }
+.brand h1 span:first-child { color: var(--red); }
+.brand h1 span:last-child { color: var(--cyan); }
 
-        .search-box::before {
-            content: '🔍';
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 11px;
-            opacity: 0.5;
-        }
+.brand p {
+  color: #9db9d0;
+  letter-spacing: 2px;
+  font-size: 12px;
+}
 
-        .counter-badge {
-            background: #08111e;
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            color: var(--primary-cyan);
-            padding: 7px 14px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 700;
-            min-width: 80px;
-            text-align: center;
-        }
+/* TOP BAR */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 16px;
+  border: 1px solid #16405d;
+  border-left: 3px solid var(--cyan);
+  border-radius: 12px;
+  background: #071321;
+  margin-bottom: 18px;
+}
 
-        /* Gallery Layout matching image */
-        .gallery {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
+.heading {
+  font: 800 clamp(13px, 2.5vw, 19px) Orbitron;
+}
 
-        .image-container {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            position: relative;
-        }
+.tools {
+  display: flex;
+  gap: 10px;
+}
 
-        /* Prefix `>>` above each item */
-        .image-container::before {
-            content: '>>';
-            position: absolute;
-            top: -16px;
-            left: 0;
-            font-size: 11px;
-            color: var(--text-dim);
-            font-family: monospace;
-        }
+.search {
+  width: 210px;
+  padding: 11px;
+  border: 1px solid #164e70;
+  background: #030b17;
+  border-radius: 8px;
+  color: white;
+  outline: none;
+  font: inherit;
+}
 
-        /* Image Box - Large Thumbnail like image */
-        .img-wrapper {
-            position: relative;
-            width: 260px;
-            height: 155px;
-            border-radius: 12px;
-            overflow: hidden;
-            background: #080d16;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            cursor: pointer;
-            flex-shrink: 0;
-        }
+.search:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 12px #00dfff30;
+}
 
-        .img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
+.counter {
+  padding: 11px;
+  min-width: 90px;
+  text-align: center;
+  border: 1px solid #087d9c;
+  border-radius: 8px;
+  color: var(--cyan);
+  font: 700 12px Orbitron;
+  background: #041625;
+}
 
-        /* Number Badge inside image top-left */
-        .image-number {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(18, 22, 32, 0.85);
-            color: #ffffff;
-            padding: 5px 12px;
-            font-size: 13px;
-            font-weight: 800;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 8px;
-            backdrop-filter: blur(4px);
-        }
+/* GALLERY */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+}
 
-        /* Right Content Details */
-        .item-right {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 8px;
-            padding-top: 5px;
-        }
+.item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px;
+  min-width: 0;
+  border: 1px solid #163b5a;
+  border-radius: 13px;
+  background: linear-gradient(120deg, #07172b, #030914);
+  transition: .2s;
+  position: relative;
+  overflow: hidden;
+}
 
-        .item-title {
-            font-size: 15px;
-            font-weight: 700;
-            color: #ffffff;
-        }
+.item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: linear-gradient(var(--red), var(--cyan));
+}
 
-        .item-tag {
-            background: #091a2e;
-            border: 1px solid #14355a;
-            color: #2ed3ff;
-            padding: 3px 10px;
-            font-size: 11px;
-            font-weight: 700;
-            border-radius: 12px;
-            letter-spacing: 0.5px;
-        }
+.item:hover {
+  transform: translateY(-3px);
+  border-color: var(--cyan);
+  box-shadow: 0 5px 25px #008cff20;
+}
 
-        .footer-thankyou {
-            margin: 40px auto 30px auto;
-            padding: 18px;
-            background: rgba(0, 240, 255, 0.02);
-            border: 1px dashed var(--border-cyan);
-            border-radius: 8px;
-            text-align: center;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 15px;
-            font-weight: 800;
-            color: var(--primary-cyan);
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
-        }
+.thumb {
+  width: clamp(110px, 17vw, 180px);
+  aspect-ratio: 1.48;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid #087eb9;
+  border-radius: 9px;
+  background: #06101e;
+}
 
-        /* Lightbox Fullscreen */
-        .lightbox-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(2, 4, 10, 0.95);
-            backdrop-filter: blur(12px);
-            display: none; 
-            justify-content: center;
-            align-items: center;
-            z-index: 1000; 
-        }
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-        .lightbox-overlay.active {
-            display: flex;
-        }
+.num {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  padding: 5px 9px;
+  background: #04111fee;
+  border: 1px solid var(--cyan);
+  border-radius: 6px;
+  font: 800 12px Orbitron;
+}
 
-        .lightbox-image {
-            max-width: 90%;
-            max-height: 85vh;
-            border: 1px solid var(--primary-cyan);
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
-            border-radius: 8px;
-        }
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
 
-        .close-lightbox {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: var(--primary-cyan);
-            font-size: 36px;
-            cursor: pointer;
-        }
+.title {
+  font: 800 clamp(12px, 1.8vw, 17px) Orbitron;
+}
 
-        /* Responsive */
-        @media (max-width: 480px) {
-            .img-wrapper {
-                width: 180px;
-                height: 110px;
-            }
-            .search-box input {
-                width: 110px;
-            }
-        }
-    </style>
+.tag {
+  align-self: flex-start;
+  padding: 5px 11px;
+  border: 1px solid #078baa;
+  border-radius: 30px;
+  background: #052136;
+  color: var(--cyan);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* FOOTER */
+.footer {
+  margin: 28px 0;
+  padding: 18px;
+  text-align: center;
+  border: 1px solid #1474a0;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #230912, #06152b, #071a35);
+  color: var(--cyan);
+  font: 800 16px Orbitron;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px #00eaff70;
+}
+
+.footer span { color: var(--red); }
+
+/* LIGHTBOX */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: #01040df5;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.lightbox.active { display: flex; }
+
+.lightbox img {
+  max-width: 95%;
+  max-height: 85vh;
+  object-fit: contain;
+  border: 1px solid var(--cyan);
+  border-radius: 10px;
+  box-shadow: 0 0 30px #007dff55;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 42px;
+  color: var(--cyan);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.status {
+  text-align: center;
+  color: #8ba5bd;
+  padding: 15px;
+  font-size: 12px;
+}
+
+/* MOBILE */
+@media(max-width:700px) {
+  .gallery { grid-template-columns: 1fr; }
+  .header { flex-direction: column; }
+  .logo { width: 105px; height: 105px; }
+  .topbar { align-items: flex-start; }
+  .heading { width: 100%; }
+  .tools { width: 100%; }
+  .search { flex: 1; min-width: 0; }
+}
+
+@media(max-width:380px) {
+  body { padding: 8px; }
+  .item { gap: 9px; padding: 8px; }
+  .thumb { width: 41vw; }
+}
+</style>
 </head>
-<body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
 
-    <div class="app-container">
-        <!-- Top Bar -->
-        <div class="top-bar">
-            <div class="header-title">LỊCH SỬ BẢNG XẾP HẠNG</div>
-            <div class="top-right-group">
-                <div class="search-box">
-                    <input type="text" id="search-input" placeholder="Tìm số BXH..." oninput="filterBXH()">
-                </div>
-                <div class="counter-badge" id="counter">Đang tải...</div>
-            </div>
-        </div>
+<body>
+<main class="container">
 
-        <!-- Main Gallery List -->
-        <div class="gallery" id="gallery-container"></div>
+  <header class="header">
+    <!-- Đặt logo.jpg cùng thư mục HTML -->
+    <img src="logo.jpg" class="logo" alt="Logo NDK BOT">
 
-        <!-- Footer -->
-        <div class="footer-thankyou" id="thankyou-block" style="display: none;">
-            NDKBOT THANK YOU
-        </div>
+    <div class="brand">
+      <p>GAMING • COMMUNITY</p>
+      <h1><span>DK</span><span>VL</span><br>STUDIO</h1>
+      <p>BOT CHAT · RANKING ARCHIVE</p>
     </div>
+  </header>
 
-    <!-- Modal Lightbox Xem Ảnh Lớn -->
-    <div class="lightbox-overlay" id="lightbox">
-        <span class="close-lightbox" id="close-btn">&times;</span>
-        <img src="" alt="BXH Chi Tiết" class="lightbox-image" id="lightbox-img">
+  <section class="topbar">
+    <div class="heading">LỊCH SỬ BẢNG XẾP HẠNG</div>
+
+    <div class="tools">
+      <input
+        id="search"
+        class="search"
+        placeholder="Tìm số BXH..."
+        type="search"
+      >
+      <div class="counter" id="counter">0 / 0</div>
     </div>
+  </section>
 
-    <script>
-        const BATCH_SIZE = 15;
-        const gallery = document.getElementById('gallery-container');
-        const counterEl = document.getElementById('counter');
-        const thankyouBlock = document.getElementById('thankyou-block');
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const closeBtn = document.getElementById('close-btn');
+  <section class="gallery" id="gallery"></section>
 
-        let totalLoaded = 0;
+  <div class="status" id="status">Đang tải ảnh...</div>
 
-        function checkImageExists(index) {
-            return new Promise((resolve) => {
-                const formats = [`${index}.png`, `${index}.jpg`, `${index}.jpeg`, `${index}.webp`];
-                let checkedCount = 0;
-                let foundSrc = null;
+  <footer class="footer">
+    <span>»</span> NDKBOT THANK YOU <span>«</span>
+  </footer>
+</main>
 
-                formats.forEach(src => {
-                    const img = new Image();
-                    img.onload = () => {
-                        if (!foundSrc) {
-                            foundSrc = src;
-                            resolve(foundSrc);
-                        }
-                    };
-                    img.onerror = () => {
-                        checkedCount++;
-                        if (checkedCount === formats.length && !foundSrc) {
-                            resolve(null);
-                        }
-                    };
-                    img.src = src;
-                });
-            });
+<div class="lightbox" id="lightbox">
+  <button class="close" id="close">&times;</button>
+  <img id="bigImage" alt="BXH chi tiết">
+</div>
+
+<script>
+const MAX_SCAN = 1000;
+const BATCH_SIZE = 60;
+
+const gallery = document.getElementById("gallery");
+const counter = document.getElementById("counter");
+const statusText = document.getElementById("status");
+const search = document.getElementById("search");
+const lightbox = document.getElementById("lightbox");
+const bigImage = document.getElementById("bigImage");
+
+let allItems = [];
+
+function findImage(index) {
+  return new Promise(resolve => {
+    const extensions = ["png", "jpg", "jpeg", "webp"];
+    let remaining = extensions.length;
+    let finished = false;
+
+    extensions.forEach(ext => {
+      const src = `${index}.${ext}`;
+      const img = new Image();
+
+      img.onload = () => {
+        if (!finished) {
+          finished = true;
+          resolve(src);
         }
+      };
 
-        async function loadFastUnlimitedImages() {
-            let currentIndex = 1;
-            let keepScanning = true;
-
-            while (keepScanning) {
-                const batchPromises = [];
-                for (let i = 0; i < BATCH_SIZE; i++) {
-                    batchPromises.push(checkImageExists(currentIndex + i));
-                }
-
-                const results = await Promise.all(batchPromises);
-                const fragment = document.createDocumentFragment();
-                let addedInBatch = 0;
-
-                for (let i = 0; i < results.length; i++) {
-                    const validSrc = results[i];
-                    const itemIndex = currentIndex + i;
-
-                    if (validSrc) {
-                        totalLoaded++;
-                        addedInBatch++;
-
-                        const div = document.createElement('div');
-                        div.className = 'image-container';
-                        div.setAttribute('data-index', itemIndex);
-
-                        div.innerHTML = `
-                            <div class="img-wrapper" onclick="openLightbox('${validSrc}')">
-                                <img src="${validSrc}" alt="BXH #${itemIndex}" loading="lazy" decoding="async">
-                                <span class="image-number">${itemIndex}</span>
-                            </div>
-                            <div class="item-right">
-                                <div class="item-title">BXH #${itemIndex}</div>
-                                <span class="item-tag">BXH #${itemIndex}</span>
-                            </div>
-                        `;
-                        fragment.appendChild(div);
-                    } else {
-                        keepScanning = false;
-                        break;
-                    }
-                }
-
-                gallery.appendChild(fragment);
-                updateCounter(totalLoaded, totalLoaded);
-
-                if (addedInBatch < BATCH_SIZE) {
-                    break;
-                }
-
-                currentIndex += BATCH_SIZE;
-            }
-
-            if (totalLoaded > 0) {
-                thankyouBlock.style.display = 'block';
-            } else {
-                counterEl.innerText = "0 / 0";
-            }
+      img.onerror = () => {
+        remaining--;
+        if (remaining === 0 && !finished) {
+          resolve(null);
         }
+      };
 
-        function updateCounter(visible, total) {
-            counterEl.innerText = `${visible} / ${total}`;
-        }
+      img.src = src;
+    });
+  });
+}
 
-        function filterBXH() {
-            const input = document.getElementById('search-input').value.trim();
-            const items = document.querySelectorAll('.image-container');
-            let visibleCount = 0;
+function createCard(index, src) {
+  const card = document.createElement("article");
+  card.className = "item";
+  card.dataset.index = index;
 
-            items.forEach(item => {
-                const index = item.getAttribute('data-index');
-                if (input === '' || index === input || index.includes(input)) {
-                    item.style.display = 'flex';
-                    visibleCount++;
-                } else {
-                    item.style.display = 'none';
-                }
-            });
+  const thumb = document.createElement("div");
+  thumb.className = "thumb";
 
-            updateCounter(visibleCount, totalLoaded);
-        }
+  const img = document.createElement("img");
+  img.src = src;
+  img.alt = `BXH #${index}`;
+  img.loading = "eager";
+  img.decoding = "async";
 
-        function openLightbox(src) {
-            lightboxImg.src = src;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+  const num = document.createElement("span");
+  num.className = "num";
+  num.textContent = index;
 
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-        }
+  thumb.append(img, num);
+  thumb.onclick = () => openImage(src);
 
-        closeBtn.onclick = closeLightbox;
-        lightbox.onclick = (e) => { if (e.target !== lightboxImg) closeLightbox(); };
+  const details = document.createElement("div");
+  details.className = "details";
 
-        loadFastUnlimitedImages();
-    </script>
+  const title = document.createElement("div");
+  title.className = "title";
+  title.textContent = `BXH #${index}`;
+
+  const tag = document.createElement("span");
+  tag.className = "tag";
+  tag.textContent = `BXH #${index}`;
+
+  details.append(title, tag);
+  card.append(thumb, details);
+
+  return card;
+}
+
+async function loadGallery() {
+  gallery.innerHTML = "";
+  allItems = [];
+
+  // Quét theo nhóm song song
+  for (let start = 1; start <= MAX_SCAN; start += BATCH_SIZE) {
+    const end = Math.min(start + BATCH_SIZE - 1, MAX_SCAN);
+
+    const results = await Promise.all(
+      Array.from(
+        {length: end - start + 1},
+        (_, i) => findImage(start + i)
+      )
+    );
+
+    const fragment = document.createDocumentFragment();
+
+    for (let i = 0; i < results.length; i++) {
+      const src = results[i];
+      const index = start + i;
+
+      // Mặc định ảnh đánh số liên tục
+      if (!src) {
+        statusText.textContent =
+          `Đã tải ${allItems.length} ảnh BXH.`;
+        updateCounter();
+        return;
+      }
+
+      const item = {index, src};
+      allItems.push(item);
+      fragment.appendChild(createCard(index, src));
+    }
+
+    gallery.appendChild(fragment);
+    updateCounter();
+
+    statusText.textContent =
+      `Đã tìm thấy ${allItems.length} ảnh BXH...`;
+  }
+
+  statusText.textContent = "Đã quét hết danh sách.";
+}
+
+function updateCounter() {
+  const visible = allItems.filter(item => {
+    const q = search.value.trim().replace(/^#/, "");
+    return !q || String(item.index).includes(q);
+  }).length;
+
+  counter.textContent = `${visible} / ${allItems.length}`;
+}
+
+search.addEventListener("input", () => {
+  const q = search.value.trim().replace(/^#/, "");
+
+  document.querySelectorAll(".item").forEach(card => {
+    card.style.display =
+      !q || card.dataset.index.includes(q)
+      ? "flex" : "none";
+  });
+
+  updateCounter();
+});
+
+function openImage(src) {
+  bigImage.src = src;
+  lightbox.classList.add("active");
+}
+
+function closeImage() {
+  lightbox.classList.remove("active");
+  bigImage.src = "";
+}
+
+document.getElementById("close").onclick = closeImage;
+
+lightbox.onclick = e => {
+  if (e.target === lightbox) closeImage();
+};
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeImage();
+});
+
+loadGallery();
+</script>
 </body>
 </html>
