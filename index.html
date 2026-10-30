@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NDK BOT - Lịch sử BXH</title>
+<title>DKVL STUDIO - Lịch sử BXH</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
 
@@ -24,76 +24,102 @@
 }
 
 body {
-  background:
-    radial-gradient(ellipse at 0% 10%, #ff19351c, transparent 35%),
-    radial-gradient(ellipse at 100% 10%, #006aff30, transparent 40%),
-    #030711;
-  color: var(--text);
-  font-family: 'Chakra Petch', sans-serif;
   min-height: 100vh;
   padding: 15px;
+  color: var(--text);
+  font-family: 'Chakra Petch', sans-serif;
+  background:
+    radial-gradient(ellipse at 0 10%, #ff193527, transparent 38%),
+    radial-gradient(ellipse at 100% 10%, #006aff35, transparent 40%),
+    #030711;
 }
 
 .container {
-  max-width: 1100px;
+  width: min(1200px, 100%);
   margin: auto;
 }
 
-/* HEADER */
-.header {
+/* LOGO HEADER */
+.hero {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 20px;
-  padding: 22px;
-  border: 1px solid #1677a8;
-  border-radius: 18px;
-  background: linear-gradient(110deg, #260912, #030b19 50%, #061c42);
-  box-shadow: 0 0 25px #008cff20;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 25px;
   margin-bottom: 22px;
+  border: 1px solid #1b80a9;
+  border-radius: 22px;
+  background: linear-gradient(
+    105deg, #270912, #020916 48%, #061d43
+  );
+  box-shadow: 0 0 35px #007dff25;
   text-align: center;
 }
 
-.logo {
-  width: 130px;
-  height: 130px;
-  object-fit: cover;
+.logo-frame {
+  width: clamp(180px, 28vw, 290px);
+  aspect-ratio: 1;
+  padding: 5px;
   border-radius: 50%;
-  border: 2px solid var(--cyan);
-  box-shadow: 0 0 20px #008cff66;
+  background: conic-gradient(
+    var(--red), #050914 28%,
+    var(--cyan) 52%, #050914 75%,
+    var(--red)
+  );
+  box-shadow:
+    0 0 25px #ff253d55,
+    0 0 45px #147bff55;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+  border: 3px solid #030711;
+}
+
+.brand small {
+  color: #b6d5e8;
+  font: 700 11px Orbitron;
+  letter-spacing: 4px;
 }
 
 .brand h1 {
-  font: 900 clamp(24px, 5vw, 42px) Orbitron;
-  margin: 8px 0;
+  font: 900 clamp(30px, 6vw, 55px) Orbitron;
+  margin: 14px 0;
+  line-height: 1.2;
+  text-shadow: 0 0 20px #00dfff44;
 }
 
-.brand h1 span:first-child { color: var(--red); }
-.brand h1 span:last-child { color: var(--cyan); }
+.brand h1 .red { color: #ff3048; }
+.brand h1 .blue { color: #31bdff; }
 
 .brand p {
-  color: #9db9d0;
+  color: #b1c8dc;
   letter-spacing: 2px;
-  font-size: 12px;
+  font-size: 13px;
 }
 
-/* TOP BAR */
+/* THANH TÌM KIẾM */
 .topbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  justify-content: space-between;
   flex-wrap: wrap;
-  padding: 16px;
+  gap: 14px;
+  padding: 17px;
+  margin-bottom: 20px;
   border: 1px solid #16405d;
-  border-left: 3px solid var(--cyan);
-  border-radius: 12px;
+  border-left: 4px solid var(--cyan);
+  border-radius: 13px;
   background: #071321;
-  margin-bottom: 18px;
 }
 
 .heading {
-  font: 800 clamp(13px, 2.5vw, 19px) Orbitron;
+  font: 800 clamp(13px, 2.3vw, 20px) Orbitron;
 }
 
 .tools {
@@ -102,12 +128,13 @@ body {
 }
 
 .search {
-  width: 210px;
-  padding: 11px;
-  border: 1px solid #164e70;
-  background: #030b17;
-  border-radius: 8px;
+  width: 220px;
+  max-width: 52vw;
+  padding: 12px;
   color: white;
+  background: #030b17;
+  border: 1px solid #164e70;
+  border-radius: 9px;
   outline: none;
   font: inherit;
 }
@@ -118,62 +145,50 @@ body {
 }
 
 .counter {
-  padding: 11px;
+  padding: 12px;
   min-width: 90px;
   text-align: center;
   border: 1px solid #087d9c;
-  border-radius: 8px;
+  border-radius: 9px;
   color: var(--cyan);
-  font: 700 12px Orbitron;
   background: #041625;
+  font: 700 12px Orbitron;
 }
 
-/* GALLERY */
+/* DANH SÁCH BXH */
 .gallery {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 15px;
+  gap: 18px;
 }
 
 .item {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 12px;
+  gap: 18px;
   min-width: 0;
+  padding: 14px;
   border: 1px solid #163b5a;
-  border-radius: 13px;
+  border-radius: 15px;
   background: linear-gradient(120deg, #07172b, #030914);
   transition: .2s;
-  position: relative;
-  overflow: hidden;
-}
-
-.item::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 2px;
-  background: linear-gradient(var(--red), var(--cyan));
 }
 
 .item:hover {
   transform: translateY(-3px);
   border-color: var(--cyan);
-  box-shadow: 0 5px 25px #008cff20;
+  box-shadow: 0 8px 28px #008cff25;
 }
 
 .thumb {
-  width: clamp(110px, 17vw, 180px);
-  aspect-ratio: 1.48;
-  flex-shrink: 0;
   position: relative;
+  width: clamp(170px, 22vw, 260px);
+  aspect-ratio: 1.38;
+  flex-shrink: 0;
   overflow: hidden;
-  cursor: pointer;
-  border: 1px solid #087eb9;
-  border-radius: 9px;
+  cursor: zoom-in;
+  border: 1px solid #0e9fce;
+  border-radius: 11px;
   background: #06101e;
 }
 
@@ -186,86 +201,53 @@ body {
 
 .num {
   position: absolute;
-  top: 7px;
-  left: 7px;
-  padding: 5px 9px;
+  top: 8px;
+  left: 8px;
+  padding: 6px 10px;
   background: #04111fee;
   border: 1px solid var(--cyan);
-  border-radius: 6px;
-  font: 800 12px Orbitron;
+  border-radius: 7px;
+  font: 800 13px Orbitron;
 }
 
 .details {
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  min-width: 0;
+  gap: 12px;
 }
 
 .title {
-  font: 800 clamp(12px, 1.8vw, 17px) Orbitron;
+  font: 800 clamp(14px, 1.8vw, 19px) Orbitron;
+  color: white;
 }
 
 .tag {
   align-self: flex-start;
-  padding: 5px 11px;
+  padding: 6px 13px;
   border: 1px solid #078baa;
   border-radius: 30px;
   background: #052136;
   color: var(--cyan);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
 }
 
-/* FOOTER */
+/* CHÂN TRANG */
 .footer {
-  margin: 28px 0;
-  padding: 18px;
+  margin: 30px 0;
+  padding: 20px 12px;
   text-align: center;
   border: 1px solid #1474a0;
-  border-radius: 12px;
+  border-radius: 13px;
   background: linear-gradient(90deg, #230912, #06152b, #071a35);
   color: var(--cyan);
-  font: 800 16px Orbitron;
+  font: 800 clamp(13px, 2.3vw, 18px) Orbitron;
   letter-spacing: 2px;
   text-shadow: 0 0 12px #00eaff70;
 }
 
 .footer span { color: var(--red); }
-
-/* LIGHTBOX */
-.lightbox {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 999;
-  background: #01040df5;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.lightbox.active { display: flex; }
-
-.lightbox img {
-  max-width: 95%;
-  max-height: 85vh;
-  object-fit: contain;
-  border: 1px solid var(--cyan);
-  border-radius: 10px;
-  box-shadow: 0 0 30px #007dff55;
-}
-
-.close {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 42px;
-  color: var(--cyan);
-  background: none;
-  border: 0;
-  cursor: pointer;
-}
 
 .status {
   text-align: center;
@@ -274,21 +256,88 @@ body {
   font-size: 12px;
 }
 
-/* MOBILE */
-@media(max-width:700px) {
-  .gallery { grid-template-columns: 1fr; }
-  .header { flex-direction: column; }
-  .logo { width: 105px; height: 105px; }
-  .topbar { align-items: flex-start; }
-  .heading { width: 100%; }
-  .tools { width: 100%; }
-  .search { flex: 1; min-width: 0; }
+/* PHÓNG TO ẢNH */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  background: #01040df7;
+  backdrop-filter: blur(10px);
 }
 
-@media(max-width:380px) {
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 98vw;
+  max-height: 92vh;
+  object-fit: contain;
+  border: 1px solid var(--cyan);
+  border-radius: 10px;
+  box-shadow: 0 0 38px #007dff55;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 8px;
+  width: 48px;
+  height: 48px;
+  color: var(--cyan);
+  font-size: 40px;
+  background: #06111d;
+  border: 1px solid #155b7b;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* ĐIỆN THOẠI */
+@media (max-width: 760px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: 22px 12px;
+    gap: 17px;
+  }
+
+  .logo-frame {
+    width: clamp(160px, 47vw, 230px);
+  }
+
+  .topbar {
+    align-items: flex-start;
+  }
+
+  .heading {
+    width: 100%;
+  }
+
+  .tools {
+    width: 100%;
+  }
+
+  .search {
+    flex: 1;
+    width: auto;
+    max-width: none;
+  }
+
+  .thumb {
+    width: clamp(155px, 43vw, 245px);
+  }
+}
+
+@media (max-width: 390px) {
   body { padding: 8px; }
-  .item { gap: 9px; padding: 8px; }
-  .thumb { width: 41vw; }
+  .item { gap: 10px; padding: 9px; }
+  .thumb { width: 43vw; }
 }
 </style>
 </head>
@@ -296,17 +345,24 @@ body {
 <body>
 <main class="container">
 
-  <header class="header">
-    <!-- Đặt logo.jpg cùng thư mục HTML -->
-    <img src="logo.jpg" class="logo" alt="Logo NDK BOT">
+  <!-- LOGO -->
+  <header class="hero">
+    <div class="logo-frame">
+      <!-- Đặt ảnh logo.jpg cạnh file HTML -->
+      <img src="logo.jpg" class="logo" alt="DKVL STUDIO">
+    </div>
 
     <div class="brand">
-      <p>GAMING • COMMUNITY</p>
-      <h1><span>DK</span><span>VL</span><br>STUDIO</h1>
+      <small>GAMING • COMMUNITY</small>
+      <h1>
+        <span class="red">DK</span><span class="blue">VL</span>
+        <br>STUDIO
+      </h1>
       <p>BOT CHAT · RANKING ARCHIVE</p>
     </div>
   </header>
 
+  <!-- THANH TÌM KIẾM -->
   <section class="topbar">
     <div class="heading">LỊCH SỬ BẢNG XẾP HẠNG</div>
 
@@ -321,15 +377,17 @@ body {
     </div>
   </section>
 
+  <!-- DANH SÁCH ẢNH -->
   <section class="gallery" id="gallery"></section>
-
   <div class="status" id="status">Đang tải ảnh...</div>
 
   <footer class="footer">
     <span>»</span> NDKBOT THANK YOU <span>«</span>
   </footer>
+
 </main>
 
+<!-- XEM ẢNH LỚN -->
 <div class="lightbox" id="lightbox">
   <button class="close" id="close">&times;</button>
   <img id="bigImage" alt="BXH chi tiết">
@@ -348,6 +406,7 @@ const bigImage = document.getElementById("bigImage");
 
 let allItems = [];
 
+// Tìm ảnh theo định dạng
 function findImage(index) {
   return new Promise(resolve => {
     const extensions = ["png", "jpg", "jpeg", "webp"];
@@ -377,6 +436,7 @@ function findImage(index) {
   });
 }
 
+// Tạo thẻ BXH
 function createCard(index, src) {
   const card = document.createElement("article");
   card.className = "item";
@@ -415,17 +475,20 @@ function createCard(index, src) {
   return card;
 }
 
+// Tải danh sách theo nhóm
 async function loadGallery() {
   gallery.innerHTML = "";
   allItems = [];
 
-  // Quét theo nhóm song song
   for (let start = 1; start <= MAX_SCAN; start += BATCH_SIZE) {
-    const end = Math.min(start + BATCH_SIZE - 1, MAX_SCAN);
+    const end = Math.min(
+      start + BATCH_SIZE - 1,
+      MAX_SCAN
+    );
 
     const results = await Promise.all(
       Array.from(
-        {length: end - start + 1},
+        { length: end - start + 1 },
         (_, i) => findImage(start + i)
       )
     );
@@ -436,16 +499,23 @@ async function loadGallery() {
       const src = results[i];
       const index = start + i;
 
-      // Mặc định ảnh đánh số liên tục
+      // Dãy số liên tục
       if (!src) {
+        gallery.appendChild(fragment);
+
         statusText.textContent =
           `Đã tải ${allItems.length} ảnh BXH.`;
+
+        if (!allItems.length) {
+          gallery.innerHTML =
+            '<div class="empty">Chưa có ảnh BXH.</div>';
+        }
+
         updateCounter();
         return;
       }
 
-      const item = {index, src};
-      allItems.push(item);
+      allItems.push({ index, src });
       fragment.appendChild(createCard(index, src));
     }
 
@@ -455,15 +525,15 @@ async function loadGallery() {
     statusText.textContent =
       `Đã tìm thấy ${allItems.length} ảnh BXH...`;
   }
-
-  statusText.textContent = "Đã quét hết danh sách.";
 }
 
+// Tìm kiếm BXH
 function updateCounter() {
-  const visible = allItems.filter(item => {
-    const q = search.value.trim().replace(/^#/, "");
-    return !q || String(item.index).includes(q);
-  }).length;
+  const q = search.value.trim().replace(/^#/, "");
+
+  const visible = allItems.filter(item =>
+    !q || String(item.index).includes(q)
+  ).length;
 
   counter.textContent = `${visible} / ${allItems.length}`;
 }
@@ -474,12 +544,14 @@ search.addEventListener("input", () => {
   document.querySelectorAll(".item").forEach(card => {
     card.style.display =
       !q || card.dataset.index.includes(q)
-      ? "flex" : "none";
+        ? "flex"
+        : "none";
   });
 
   updateCounter();
 });
 
+// Phóng to ảnh
 function openImage(src) {
   bigImage.src = src;
   lightbox.classList.add("active");
@@ -498,6 +570,24 @@ lightbox.onclick = e => {
 
 document.addEventListener("keydown", e => {
   if (e.key === "Escape") closeImage();
+});
+
+// Hạn chế thao tác thông thường
+document.addEventListener("contextmenu", e => {
+  e.preventDefault();
+});
+
+document.addEventListener("dragstart", e => {
+  e.preventDefault();
+});
+
+document.addEventListener("keydown", e => {
+  if (
+    (e.ctrlKey || e.metaKey) &&
+    ["s", "u"].includes(e.key.toLowerCase())
+  ) {
+    e.preventDefault();
+  }
 });
 
 loadGallery();
