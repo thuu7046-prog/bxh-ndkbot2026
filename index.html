@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -9,31 +10,34 @@
 
 <style>
 :root {
-  --bg: #f2f9ff;
-  --card: #ffffff;
-  --ink: #0b2a4a;
-  --mute: #5b7690;
-  --line: #cfe6fb;
-  --sky: #dff0ff;
+  --bg: #030711;
+  --cyan: #27e8ff;
   --blue: #147bff;
-  --cyan: #13b8e6;
-  --red: #ff3048;
+  --red: #ff253d;
+  --text: #eaf7ff;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   min-height: 100vh;
   padding: 15px;
-  color: var(--ink);
+  color: var(--text);
   font-family: 'Chakra Petch', sans-serif;
   background:
-    radial-gradient(ellipse at 0 0, #ffe3e7aa, transparent 40%),
-    radial-gradient(ellipse at 100% 0, #bfe0ffcc, transparent 45%),
-    linear-gradient(180deg, #f7fbff, #e8f4ff);
+    radial-gradient(ellipse at 0 10%, #ff193527, transparent 38%),
+    radial-gradient(ellipse at 100% 10%, #006aff35, transparent 40%),
+    #030711;
 }
 
-.container { width: min(1200px, 100%); margin: auto; }
+.container {
+  width: min(1200px, 100%);
+  margin: auto;
+}
 
 /* LOGO HEADER */
 .hero {
@@ -42,12 +46,14 @@ body {
   justify-content: center;
   flex-wrap: wrap;
   gap: 30px;
-  padding: 28px;
+  padding: 25px;
   margin-bottom: 22px;
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  background: linear-gradient(105deg, #fff2f4, #fff 48%, #e4f2ff);
-  box-shadow: 0 12px 40px #147bff1f;
+  border: 1px solid #1b80a9;
+  border-radius: 22px;
+  background: linear-gradient(
+    105deg, #270912, #020916 48%, #061d43
+  );
+  box-shadow: 0 0 35px #007dff25;
   text-align: center;
 }
 
@@ -56,8 +62,14 @@ body {
   aspect-ratio: 1;
   padding: 5px;
   border-radius: 50%;
-  background: conic-gradient(var(--red), #fff 28%, var(--blue) 52%, #fff 75%, var(--red));
-  box-shadow: -12px 8px 36px #ff304833, 12px 8px 36px #147bff44;
+  background: conic-gradient(
+    var(--red), #050914 28%,
+    var(--cyan) 52%, #050914 75%,
+    var(--red)
+  );
+  box-shadow:
+    0 0 25px #ff253d55,
+    0 0 45px #147bff55;
 }
 
 .logo {
@@ -66,15 +78,30 @@ body {
   object-fit: cover;
   display: block;
   border-radius: 50%;
-  border: 3px solid #fff;
-  background: #000;
+  border: 3px solid #030711;
 }
 
-.brand small { color: var(--mute); font: 700 11px Orbitron; letter-spacing: 4px; }
-.brand h1 { font: 900 clamp(30px, 6vw, 55px) Orbitron; margin: 14px 0; line-height: 1.2; }
-.brand h1 .red { color: var(--red); }
-.brand h1 .blue { color: var(--blue); }
-.brand p { color: var(--mute); letter-spacing: 2px; font-size: 13px; }
+.brand small {
+  color: #b6d5e8;
+  font: 700 11px Orbitron;
+  letter-spacing: 4px;
+}
+
+.brand h1 {
+  font: 900 clamp(30px, 6vw, 55px) Orbitron;
+  margin: 14px 0;
+  line-height: 1.2;
+  text-shadow: 0 0 20px #00dfff44;
+}
+
+.brand h1 .red { color: #ff3048; }
+.brand h1 .blue { color: #31bdff; }
+
+.brand p {
+  color: #b1c8dc;
+  letter-spacing: 2px;
+  font-size: 13px;
+}
 
 /* THANH TÌM KIẾM */
 .topbar {
@@ -85,42 +112,55 @@ body {
   gap: 14px;
   padding: 17px;
   margin-bottom: 20px;
-  border: 1px solid var(--line);
-  border-left: 4px solid var(--blue);
-  border-radius: 14px;
-  background: var(--card);
-  box-shadow: 0 6px 20px #147bff14;
+  border: 1px solid #16405d;
+  border-left: 4px solid var(--cyan);
+  border-radius: 13px;
+  background: #071321;
 }
 
-.heading { font: 800 clamp(13px, 2.3vw, 20px) Orbitron; }
-.tools { display: flex; gap: 10px; }
+.heading {
+  font: 800 clamp(13px, 2.3vw, 20px) Orbitron;
+}
+
+.tools {
+  display: flex;
+  gap: 10px;
+}
 
 .search {
   width: 220px;
   max-width: 52vw;
   padding: 12px;
-  color: var(--ink);
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 10px;
+  color: white;
+  background: #030b17;
+  border: 1px solid #164e70;
+  border-radius: 9px;
   outline: none;
   font: inherit;
 }
-.search:focus { border-color: var(--blue); box-shadow: 0 0 0 3px #147bff22; }
+
+.search:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 12px #00dfff30;
+}
 
 .counter {
   padding: 12px;
   min-width: 90px;
   text-align: center;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  color: var(--blue);
-  background: var(--sky);
+  border: 1px solid #087d9c;
+  border-radius: 9px;
+  color: var(--cyan);
+  background: #041625;
   font: 700 12px Orbitron;
 }
 
 /* DANH SÁCH BXH */
-.gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
 
 .item {
   display: flex;
@@ -128,13 +168,17 @@ body {
   gap: 18px;
   min-width: 0;
   padding: 14px;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  background: var(--card);
-  box-shadow: 0 8px 24px #147bff17;
+  border: 1px solid #163b5a;
+  border-radius: 15px;
+  background: linear-gradient(120deg, #07172b, #030914);
   transition: .2s;
 }
-.item:hover { transform: translateY(-3px); border-color: var(--blue); box-shadow: 0 14px 32px #147bff2e; }
+
+.item:hover {
+  transform: translateY(-3px);
+  border-color: var(--cyan);
+  box-shadow: 0 8px 28px #008cff25;
+}
 
 .thumb {
   position: relative;
@@ -143,56 +187,74 @@ body {
   flex-shrink: 0;
   overflow: hidden;
   cursor: zoom-in;
-  border: 1px solid var(--line);
+  border: 1px solid #0e9fce;
   border-radius: 11px;
-  background: var(--sky);
+  background: #06101e;
 }
-.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
 .num {
   position: absolute;
   top: 8px;
   left: 8px;
   padding: 6px 10px;
-  background: #fff;
-  border: 1px solid var(--line);
+  background: #04111fee;
+  border: 1px solid var(--cyan);
   border-radius: 7px;
-  color: var(--blue);
   font: 800 13px Orbitron;
 }
 
-.details { min-width: 0; display: flex; flex-direction: column; gap: 12px; }
-.title { font: 800 clamp(14px, 1.8vw, 19px) Orbitron; color: var(--ink); }
+.details {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.title {
+  font: 800 clamp(14px, 1.8vw, 19px) Orbitron;
+  color: white;
+}
 
 .tag {
   align-self: flex-start;
   padding: 6px 13px;
-  border: 1px solid var(--line);
+  border: 1px solid #078baa;
   border-radius: 30px;
-  background: var(--sky);
-  color: var(--blue);
+  background: #052136;
+  color: var(--cyan);
   font-size: 12px;
   font-weight: 700;
 }
-
-.empty { grid-column: 1 / -1; text-align: center; color: var(--mute); padding: 30px; }
-
-.status { text-align: center; color: var(--mute); padding: 15px; font-size: 12px; }
 
 /* CHÂN TRANG */
 .footer {
   margin: 30px 0;
   padding: 20px 12px;
   text-align: center;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: linear-gradient(90deg, #fff2f4, #fff, #e4f2ff);
-  box-shadow: 0 8px 24px #147bff17;
-  color: var(--blue);
+  border: 1px solid #1474a0;
+  border-radius: 13px;
+  background: linear-gradient(90deg, #230912, #06152b, #071a35);
+  color: var(--cyan);
   font: 800 clamp(13px, 2.3vw, 18px) Orbitron;
   letter-spacing: 2px;
+  text-shadow: 0 0 12px #00eaff70;
 }
+
 .footer span { color: var(--red); }
+
+.status {
+  text-align: center;
+  color: #8ba5bd;
+  padding: 15px;
+  font-size: 12px;
+}
 
 /* PHÓNG TO ẢNH */
 .lightbox {
@@ -203,43 +265,73 @@ body {
   align-items: center;
   justify-content: center;
   padding: 15px;
-  background: #eaf5ffee;
+  background: #01040df7;
   backdrop-filter: blur(10px);
 }
-.lightbox.active { display: flex; }
+
+.lightbox.active {
+  display: flex;
+}
+
 .lightbox img {
   max-width: 98vw;
   max-height: 92vh;
   object-fit: contain;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 20px 60px #147bff40;
+  border: 1px solid var(--cyan);
+  border-radius: 10px;
+  box-shadow: 0 0 38px #007dff55;
 }
+
 .close {
   position: absolute;
   right: 15px;
   top: 8px;
   width: 48px;
   height: 48px;
-  color: var(--blue);
+  color: var(--cyan);
   font-size: 40px;
-  background: #fff;
-  border: 1px solid var(--line);
+  background: #06111d;
+  border: 1px solid #155b7b;
   border-radius: 10px;
   cursor: pointer;
 }
 
 /* ĐIỆN THOẠI */
 @media (max-width: 760px) {
-  .gallery { grid-template-columns: 1fr; }
-  .hero { padding: 22px 12px; gap: 17px; }
-  .logo-frame { width: clamp(160px, 47vw, 230px); }
-  .topbar { align-items: flex-start; }
-  .heading { width: 100%; }
-  .tools { width: 100%; }
-  .search { flex: 1; width: auto; max-width: none; }
-  .thumb { width: clamp(155px, 43vw, 245px); }
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: 22px 12px;
+    gap: 17px;
+  }
+
+  .logo-frame {
+    width: clamp(160px, 47vw, 230px);
+  }
+
+  .topbar {
+    align-items: flex-start;
+  }
+
+  .heading {
+    width: 100%;
+  }
+
+  .tools {
+    width: 100%;
+  }
+
+  .search {
+    flex: 1;
+    width: auto;
+    max-width: none;
+  }
+
+  .thumb {
+    width: clamp(155px, 43vw, 245px);
+  }
 }
 
 @media (max-width: 390px) {
@@ -253,9 +345,10 @@ body {
 <body>
 <main class="container">
 
-  <!-- LOGO (đặt logo.jpg cạnh file HTML, hoặc thay bằng data:image/jpeg;base64,...) -->
+  <!-- LOGO -->
   <header class="hero">
     <div class="logo-frame">
+      <!-- Đặt ảnh logo.jpg cạnh file HTML -->
       <img src="logo.jpg" class="logo" alt="DKVL STUDIO">
     </div>
 
@@ -274,7 +367,12 @@ body {
     <div class="heading">LỊCH SỬ BẢNG XẾP HẠNG</div>
 
     <div class="tools">
-      <input id="search" class="search" placeholder="Tìm số BXH..." type="search">
+      <input
+        id="search"
+        class="search"
+        placeholder="Tìm số BXH..."
+        type="search"
+      >
       <div class="counter" id="counter">0 / 0</div>
     </div>
   </section>
@@ -308,7 +406,7 @@ const bigImage = document.getElementById("bigImage");
 
 let allItems = [];
 
-// Tìm ảnh theo định dạng (1.png, 1.jpg, 1.jpeg, 1.webp ...)
+// Tìm ảnh theo định dạng
 function findImage(index) {
   return new Promise(resolve => {
     const extensions = ["png", "jpg", "jpeg", "webp"];
@@ -383,10 +481,16 @@ async function loadGallery() {
   allItems = [];
 
   for (let start = 1; start <= MAX_SCAN; start += BATCH_SIZE) {
-    const end = Math.min(start + BATCH_SIZE - 1, MAX_SCAN);
+    const end = Math.min(
+      start + BATCH_SIZE - 1,
+      MAX_SCAN
+    );
 
     const results = await Promise.all(
-      Array.from({ length: end - start + 1 }, (_, i) => findImage(start + i))
+      Array.from(
+        { length: end - start + 1 },
+        (_, i) => findImage(start + i)
+      )
     );
 
     const fragment = document.createDocumentFragment();
@@ -395,13 +499,16 @@ async function loadGallery() {
       const src = results[i];
       const index = start + i;
 
-      // Dãy số liên tục: gặp số thiếu thì dừng
+      // Dãy số liên tục
       if (!src) {
         gallery.appendChild(fragment);
-        statusText.textContent = `Đã tải ${allItems.length} ảnh BXH.`;
+
+        statusText.textContent =
+          `Đã tải ${allItems.length} ảnh BXH.`;
 
         if (!allItems.length) {
-          gallery.innerHTML = '<div class="empty">Chưa có ảnh BXH.</div>';
+          gallery.innerHTML =
+            '<div class="empty">Chưa có ảnh BXH.</div>';
         }
 
         updateCounter();
@@ -414,7 +521,9 @@ async function loadGallery() {
 
     gallery.appendChild(fragment);
     updateCounter();
-    statusText.textContent = `Đã tìm thấy ${allItems.length} ảnh BXH...`;
+
+    statusText.textContent =
+      `Đã tìm thấy ${allItems.length} ảnh BXH...`;
   }
 }
 
@@ -433,7 +542,10 @@ search.addEventListener("input", () => {
   const q = search.value.trim().replace(/^#/, "");
 
   document.querySelectorAll(".item").forEach(card => {
-    card.style.display = !q || card.dataset.index.includes(q) ? "flex" : "none";
+    card.style.display =
+      !q || card.dataset.index.includes(q)
+        ? "flex"
+        : "none";
   });
 
   updateCounter();
@@ -461,11 +573,19 @@ document.addEventListener("keydown", e => {
 });
 
 // Hạn chế thao tác thông thường
-document.addEventListener("contextmenu", e => e.preventDefault());
-document.addEventListener("dragstart", e => e.preventDefault());
+document.addEventListener("contextmenu", e => {
+  e.preventDefault();
+});
+
+document.addEventListener("dragstart", e => {
+  e.preventDefault();
+});
 
 document.addEventListener("keydown", e => {
-  if ((e.ctrlKey || e.metaKey) && ["s", "u"].includes(e.key.toLowerCase())) {
+  if (
+    (e.ctrlKey || e.metaKey) &&
+    ["s", "u"].includes(e.key.toLowerCase())
+  ) {
     e.preventDefault();
   }
 });
