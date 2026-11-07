@@ -1,502 +1,433 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080b16">
-  <title>DKVL STUDIO | BXH GALLERY</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BẢNG XẾP HẠNG NDK BOT</title>
+    <!-- Font chữ Sci-Fi Cyberpunk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #05070e;
+            --card-bg: rgba(10, 16, 28, 0.85);
+            --border-color: #122035;
+            --border-cyan: rgba(0, 240, 255, 0.3);
+            --primary-cyan: #00f0ff;
+            --btn-blue: #0077ff;
+            --text-main: #d0dbe7;
+            --text-dim: #5a6e85;
+        }
 
-  <!-- Google Fonts & Font Awesome Icons -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-  <style>
-    :root {
-      --bg-dark: #080b16;
-      --card-bg: rgba(21, 26, 48, 0.65);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --accent-cyan: #00eaff;
-      --accent-purple: #a855f7;
-      --accent-pink: #ff3cac;
-      --text-main: #ffffff;
-      --text-sub: #94a3b8;
-    }
+        body { 
+            font-family: 'Chakra Petch', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main); 
+            padding: 20px 15px; 
+            min-height: 100vh;
+            user-select: none;
+            -webkit-user-select: none;
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-user-select: none;
-      user-select: none;
-    }
+        /* Container tổng */
+        .app-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-    body {
-      min-height: 100vh;
-      color: var(--text-main);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background: #060913;
-      background-image: 
-        radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 10% 20%, rgba(0, 234, 255, 0.1) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(255, 60, 172, 0.08) 0%, transparent 40%);
-      background-attachment: fixed;
-      padding-bottom: 50px;
-    }
+        /* Bộ đếm góc trên */
+        .counter-header {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 25px;
+        }
 
-    /* --- HERO HEADER --- */
-    .hero {
-      text-align: center;
-      padding: 70px 20px 30px;
-      position: relative;
-    }
+        .counter-badge {
+            background: #09172a;
+            border: 1px solid var(--border-cyan);
+            color: var(--primary-cyan);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+        }
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 16px;
-      border-radius: 30px;
-      background: rgba(0, 234, 255, 0.1);
-      border: 1px solid rgba(0, 234, 255, 0.3);
-      color: var(--accent-cyan);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 15px;
-      box-shadow: 0 0 20px rgba(0, 234, 255, 0.2);
-    }
+        /* Thanh tiêu đề & Ô tìm kiếm */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
 
-    .hero h1 {
-      font-size: clamp(40px, 7vw, 80px);
-      font-weight: 900;
-      letter-spacing: 4px;
-      line-height: 1.1;
-      background: linear-gradient(135deg, #ffffff 0%, var(--accent-cyan) 50%, var(--accent-purple) 100%);
-      background-size: 200% auto;
-      color: transparent;
-      -webkit-background-clip: text;
-      background-clip: text;
-      animation: shine 6s ease infinite;
-    }
+        .header-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #8a9eb5;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
 
-    @keyframes shine {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
+        .search-box {
+            position: relative;
+        }
 
-    .hero p {
-      margin-top: 12px;
-      color: var(--text-sub);
-      font-size: 15px;
-      letter-spacing: 3px;
-      font-weight: 600;
-    }
+        .search-box input {
+            background: #080f1d;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 16px 8px 36px;
+            border-radius: 20px;
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 13px;
+            outline: none;
+            width: 200px;
+            transition: all 0.3s ease;
+        }
 
-    /* --- TOOLBAR --- */
-    .sticky-wrapper {
-      position: sticky;
-      top: 15px;
-      z-index: 100;
-      padding: 0 20px;
-      margin-bottom: 35px;
-    }
+        .search-box input:focus {
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        }
 
-    .toolbar {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 10px 14px 10px 20px;
-      display: flex;
-      gap: 15px;
-      align-items: center;
-      justify-content: space-between;
-      border-radius: 20px;
-      background: rgba(13, 17, 34, 0.75);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--card-border);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    }
+        .search-box::before {
+            content: '🔍';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            opacity: 0.6;
+        }
 
-    .search-box {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+        /* Danh sách BXH */
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
-    .search-box i {
-      color: var(--accent-cyan);
-      font-size: 18px;
-    }
+        .image-container {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 16px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
 
-    .search-box input {
-      width: 100%;
-      border: none;
-      outline: none;
-      color: white;
-      background: transparent;
-      font-size: 15px;
-      font-family: inherit;
-    }
+        .image-container:hover {
+            border-color: var(--border-cyan);
+            background: rgba(12, 22, 38, 0.95);
+        }
 
-    .search-box input::placeholder {
-      color: #64748b;
-    }
+        .item-left {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
 
-    .counter-badge {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 18px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(0, 234, 255, 0.1));
-      border: 1px solid rgba(168, 85, 247, 0.3);
-      white-space: nowrap;
-      font-size: 14px;
-      font-weight: 700;
-      color: #fff;
-    }
+        .file-prefix {
+            font-size: 12px;
+            color: var(--text-dim);
+            font-family: monospace;
+        }
 
-    .counter-badge i {
-      color: var(--accent-pink);
-    }
+        .img-wrapper {
+            position: relative;
+            width: 140px;
+            height: 90px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #02050a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    /* --- GALLERY GRID --- */
-    .gallery {
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 25px;
-    }
+        .img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-    .card {
-      position: relative;
-      border-radius: 20px;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      backdrop-filter: blur(10px);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
+        .image-number {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.75);
+            color: #ffffff;
+            padding: 4px 10px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            backdrop-filter: blur(4px);
+        }
 
-    .card:hover {
-      transform: translateY(-8px) scale(1.02);
-      border-color: rgba(0, 234, 255, 0.5);
-      box-shadow: 0 15px 35px rgba(0, 234, 255, 0.15), 0 0 15px rgba(168, 85, 247, 0.1);
-    }
+        .item-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+            padding-top: 10px;
+        }
 
-    .brand-header {
-      padding: 14px 15px 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+        .item-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #ffffff;
+        }
 
-    .brand-tag {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      color: var(--accent-cyan);
-      text-transform: uppercase;
-    }
+        .item-tag {
+            background: #0d223a;
+            border: 1px solid #1a426d;
+            color: var(--primary-cyan);
+            padding: 3px 10px;
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 4px;
+        }
 
-    .brand-icon {
-      color: var(--accent-purple);
-      font-size: 12px;
-    }
+        /* Khung NDKBOT THANK YOU ở cuối danh sách */
+        .footer-thankyou {
+            margin: 40px auto 30px auto;
+            padding: 18px;
+            background: rgba(0, 240, 255, 0.03);
+            border: 1px dashed var(--border-cyan);
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--primary-cyan);
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+        }
 
-    .img-container {
-      position: relative;
-      width: 100%;
-      padding-top: 130%; /* Tỉ lệ hiển thị khung ảnh */
-      background: rgba(0, 0, 0, 0.2);
-      overflow: hidden;
-      cursor: pointer;
-    }
+        /* Lightbox phóng to ảnh */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(2, 4, 10, 0.95);
+            backdrop-filter: blur(12px);
+            display: none; 
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; 
+        }
 
-    .img-container img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
+        .lightbox-overlay.active {
+            display: flex;
+        }
 
-    .card:hover .img-container img {
-      transform: scale(1.05);
-    }
+        .lightbox-image {
+            max-width: 90%;
+            max-height: 85vh;
+            border: 1px solid var(--primary-cyan);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.4);
+            border-radius: 6px;
+        }
 
-    /* Watermark Overlay */
-    .img-container::after {
-      content: "DKVL STUDIO";
-      position: absolute;
-      bottom: 12px;
-      right: 12px;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(4px);
-      padding: 4px 10px;
-      border-radius: 6px;
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      pointer-events: none;
-    }
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: var(--primary-cyan);
+            font-size: 36px;
+            cursor: pointer;
+        }
 
-    .card-footer {
-      padding: 16px;
-      text-align: center;
-      background: rgba(10, 14, 29, 0.6);
-      border-top: 1px solid rgba(255, 255, 255, 0.03);
-      flex-grow: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .card-footer h3 {
-      font-size: 16px;
-      font-weight: 700;
-      color: #f1f5f9;
-      letter-spacing: 1px;
-    }
-
-    /* Lightbox Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      background: rgba(4, 6, 14, 0.9);
-      backdrop-filter: blur(15px);
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .modal.show {
-      display: flex;
-      opacity: 1;
-    }
-
-    .modal-content {
-      max-width: 90vw;
-      max-height: 90vh;
-      border-radius: 16px;
-      box-shadow: 0 0 50px rgba(0, 234, 255, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      object-fit: contain;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 25px;
-      right: 25px;
-      color: #fff;
-      font-size: 28px;
-      cursor: pointer;
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: 0.3s;
-    }
-
-    .modal-close:hover {
-      background: var(--accent-pink);
-      transform: rotate(90deg);
-    }
-
-    /* Empty state */
-    .empty-state {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 60px 20px;
-      color: var(--text-sub);
-    }
-
-    .empty-state i {
-      font-size: 48px;
-      margin-bottom: 15px;
-      color: #334155;
-    }
-
-    @media (max-width: 600px) {
-      .hero { padding-top: 40px; }
-      .gallery { grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); }
-      .sticky-wrapper { padding: 0 10px; }
-    }
-  </style>
+        #devtools-warning {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #02040a;
+            color: var(--primary-cyan);
+            z-index: 999999;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 20px;
+        }
+    </style>
 </head>
+<body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
 
-<body>
-
-  <header class="hero">
-    <div class="hero-badge">
-      <i class="fa-solid fa-crown"></i> Official Archive
+    <div id="devtools-warning">
+        <p>⚠️ ACCESS DENIED / DEVTOOLS DETECTED</p>
     </div>
-    <h1>DKVL STUDIO</h1>
-    <p>BẢNG XẾP HẠNG CAO CẤP</p>
-  </header>
 
-  <div class="sticky-wrapper">
-    <div class="toolbar">
-      <div class="search-box">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input id="search" type="text" placeholder="Tìm kiếm BXH (Ví dụ: BXH 1...)" autocomplete="off">
-      </div>
-      <div class="counter-badge">
-        <i class="fa-solid fa-layer-group"></i>
-        <span id="counter">Đang kiểm tra...</span>
-      </div>
+    <div class="app-container">
+        <!-- Khối hiển thị số lượng góc trên -->
+        <div class="counter-header">
+            <div class="counter-badge" id="counter">Đang kiểm tra...</div>
+        </div>
+
+        <!-- Thanh Tiêu đề & Ô Tìm kiếm -->
+        <div class="top-bar">
+            <div class="header-title">LỊCH SỬ BẢNG XẾP HẠNG</div>
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Tìm số BXH..." oninput="filterBXH()">
+            </div>
+        </div>
+
+        <!-- Danh sách chứa các BXH -->
+        <div class="gallery" id="gallery-container"></div>
+
+        <!-- Khối thông điệp NDKBOT THANK YOU ở cuối -->
+        <div class="footer-thankyou" id="thankyou-block" style="display: none;">
+            NDKBOT THANK YOU
+        </div>
     </div>
-  </div>
 
-  <main class="gallery" id="gallery"></main>
+    <!-- Lightbox Xem Ảnh Phóng To -->
+    <div class="lightbox-overlay" id="lightbox">
+        <span class="close-lightbox" id="close-btn">&times;</span>
+        <img src="" alt="BXH Chi Tiết" class="lightbox-image" id="lightbox-img">
+    </div>
 
-  <!-- Lightbox xem ảnh full -->
-  <div class="modal" id="modal">
-    <span class="modal-close" id="modalClose">&times;</span>
-    <img class="modal-content" id="modalImg" alt="Full BXH">
-  </div>
+    <script>
+        const BATCH_SIZE = 10; // Quét 10 ảnh cùng lúc để tối ưu tốc độ
+        const gallery = document.getElementById('gallery-container');
+        const counterEl = document.getElementById('counter');
+        const thankyouBlock = document.getElementById('thankyou-block');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('close-btn');
 
-  <script>
-    const gallery = document.getElementById("gallery");
-    const search = document.getElementById("search");
-    const counter = document.getElementById("counter");
-    const modal = document.getElementById("modal");
-    const modalImg = document.getElementById("modalImg");
-    const modalClose = document.getElementById("modalClose");
+        let totalLoaded = 0;
 
-    const TOTAL_CHECK = 200; // Số lượng thử nghiệm tối đa
-    let validImages = [];    // Lưu danh sách các ảnh load thành công
-    let loadedCount = 0;     // Đếm số lượng thực tế có sẵn
+        // Thử nghiệm kiểm tra định dạng .png hoặc .jpg cho từng ảnh
+        function testImageSrc(index) {
+            return new Promise((resolve) => {
+                const pngSrc = `${index}.png`;
+                const jpgSrc = `${index}.jpg`;
 
-    // Khởi tạo danh sách kiểm tra
-    function initGallery() {
-      gallery.innerHTML = "";
-      
-      for (let i = 1; i <= TOTAL_CHECK; i++) {
-        const item = {
-          id: i,
-          name: `BXH ${i}`,
-          src: `${i}.png`
-        };
-
-        // Tạo khung thẻ
-        const card = document.createElement("article");
-        card.className = "card";
-        card.id = `card-${i}`;
-
-        card.innerHTML = `
-          <div class="brand-header">
-            <span class="brand-tag">✦ DKVL STUDIO</span>
-            <i class="fa-solid fa-sparkles brand-icon"></i>
-          </div>
-          <div class="img-container">
-            <img src="${item.src}" alt="${item.name}" loading="lazy" draggable="false">
-          </div>
-          <div class="card-footer">
-            <h3>${item.name}</h3>
-          </div>
-        `;
-
-        const imgElement = card.querySelector("img");
-
-        // Khi ảnh load thành công -> Lưu vào mảng hợp lệ và cập nhật bộ đếm
-        imgElement.onload = () => {
-          validImages.push(item);
-          loadedCount++;
-          updateCounter();
-        };
-
-        // Khi ảnh bị lỗi (Không tồn tại 404) -> Xóa thẻ khỏi DOM
-        imgElement.onerror = () => {
-          card.remove();
-          updateCounter();
-        };
-
-        // Sự kiện click mở ảnh xem đầy đủ
-        imgElement.addEventListener("click", () => {
-          modalImg.src = item.src;
-          modal.classList.add("show");
-        });
-
-        gallery.appendChild(card);
-      }
-    }
-
-    // Cập nhật số lượng BXH thực tế hiển thị
-    function updateCounter() {
-      const currentVisible = gallery.querySelectorAll(".card").length;
-      counter.textContent = `${currentVisible} BXH`;
-    }
-
-    // Chức năng lọc tìm kiếm
-    search.addEventListener("input", () => {
-      const keyword = search.value.toLowerCase().trim();
-      let visibleCount = 0;
-
-      validImages.forEach(item => {
-        const card = document.getElementById(`card-${item.id}`);
-        if (!card) return;
-
-        if (item.name.toLowerCase().includes(keyword)) {
-          card.style.display = "flex";
-          visibleCount++;
-        } else {
-          card.style.display = "none";
+                const imgPng = new Image();
+                imgPng.onload = () => resolve(pngSrc);
+                imgPng.onerror = () => {
+                    const imgJpg = new Image();
+                    imgJpg.onload = () => resolve(jpgSrc);
+                    imgJpg.onerror = () => resolve(null);
+                    imgJpg.src = jpgSrc;
+                };
+                imgPng.src = pngSrc;
+            });
         }
-      });
 
-      // Hiển thị trạng thái rỗng nếu không tìm thấy kết quả
-      let emptyMsg = document.getElementById("empty-msg");
-      if (visibleCount === 0) {
-        if (!emptyMsg) {
-          emptyMsg = document.createElement("div");
-          emptyMsg.id = "empty-msg";
-          emptyMsg.className = "empty-state";
-          emptyMsg.innerHTML = `
-            <i class="fa-solid fa-box-open"></i>
-            <p>Không tìm thấy kết quả phù hợp với từ khóa "${search.value}"</p>
-          `;
-          gallery.appendChild(emptyMsg);
+        // Tải động KHÔNG GIỚI HẠN - Quét liên tục đến khi hết ảnh trong thư mục
+        async function loadAllImagesDynamically() {
+            let currentIndex = 1;
+            let keepScanning = true;
+
+            while (keepScanning) {
+                const batchPromises = [];
+                for (let i = 0; i < BATCH_SIZE; i++) {
+                    batchPromises.push(testImageSrc(currentIndex + i));
+                }
+
+                const results = await Promise.all(batchPromises);
+
+                for (let i = 0; i < results.length; i++) {
+                    const validSrc = results[i];
+                    const itemIndex = currentIndex + i;
+
+                    if (validSrc) {
+                        totalLoaded++;
+                        const div = document.createElement('div');
+                        div.className = 'image-container';
+                        div.setAttribute('data-index', itemIndex);
+
+                        div.innerHTML = `
+                            <div class="item-left">
+                                <span class="file-prefix">»</span>
+                                <div class="img-wrapper" onclick="openLightbox('${validSrc}')">
+                                    <img src="${validSrc}" alt="BXH #${itemIndex}" loading="lazy">
+                                    <span class="image-number">${itemIndex}</span>
+                                </div>
+                            </div>
+                            <div class="item-right">
+                                <div class="item-title">BXH #${itemIndex}</div>
+                                <span class="item-tag">BXH #${itemIndex}</span>
+                            </div>
+                        `;
+                        gallery.appendChild(div);
+                    } else {
+                        // Phát hiện hết ảnh trong thư mục -> Dừng quét
+                        keepScanning = false;
+                        break;
+                    }
+                }
+
+                currentIndex += BATCH_SIZE;
+                updateCounter(totalLoaded, totalLoaded);
+            }
+
+            // Hiện khối NDKBOT THANK YOU ở cuối danh sách sau khi đã quét xong
+            if (totalLoaded > 0) {
+                thankyouBlock.style.display = 'block';
+            } else {
+                counterEl.innerText = "0 / 0 bảng";
+            }
         }
-      } else if (emptyMsg) {
-        emptyMsg.remove();
-      }
 
-      counter.textContent = `${visibleCount} BXH`;
-    });
+        function updateCounter(visible, total) {
+            counterEl.innerText = `${visible} / ${total} bảng`;
+        }
 
-    // Đóng Lightbox Modal
-    modalClose.addEventListener("click", () => modal.classList.remove("show"));
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) modal.classList.remove("show");
-    });
+        // Lọc hiển thị khi nhập số trong ô tìm kiếm
+        function filterBXH() {
+            const input = document.getElementById('search-input').value.trim();
+            const items = document.querySelectorAll('.image-container');
+            let visibleCount = 0;
 
-    // Chống tải/coppy ảnh đơn giản
-    document.addEventListener("contextmenu", event => {
-      if (event.target.tagName === "IMG") event.preventDefault();
-    });
+            items.forEach(item => {
+                const index = item.getAttribute('data-index');
+                if (input === '' || index === input || index.includes(input)) {
+                    item.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
 
-    // Khởi chạy
-    initGallery();
-  </script>
+            updateCounter(visibleCount, totalLoaded);
+        }
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        closeBtn.onclick = closeLightbox;
+        lightbox.onclick = (e) => { if (e.target !== lightboxImg) closeLightbox(); };
+
+        // Tự động khởi chạy
+        loadAllImagesDynamically();
+    </script>
 </body>
 </html>
