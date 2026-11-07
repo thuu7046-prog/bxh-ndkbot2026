@@ -4,225 +4,499 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#080b16">
-  <title>DKVL STUDIO | BXH</title>
+  <title>DKVL STUDIO | BXH GALLERY</title>
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
+    :root {
+      --bg-dark: #080b16;
+      --card-bg: rgba(21, 26, 48, 0.65);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent-cyan: #00eaff;
+      --accent-purple: #a855f7;
+      --accent-pink: #ff3cac;
+      --text-main: #ffffff;
+      --text-sub: #94a3b8;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-user-select: none;
+      user-select: none;
     }
 
     body {
       min-height: 100vh;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      background:
-        radial-gradient(circle at 50% 0%, #25205a 0, transparent 38%),
-        linear-gradient(135deg, #080b16, #10152a);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #060913;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 10% 20%, rgba(0, 234, 255, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(255, 60, 172, 0.08) 0%, transparent 40%);
+      background-attachment: fixed;
+      padding-bottom: 50px;
     }
 
+    /* --- HERO HEADER --- */
     .hero {
       text-align: center;
-      padding: 65px 20px 35px;
-    }
-
-    .hero h1 {
-      font-size: clamp(38px, 8vw, 76px);
-      font-weight: 900;
-      letter-spacing: 5px;
-      background: linear-gradient(90deg, #00eaff, #a855f7, #ff3cac);
-      background-size: 200% auto;
-      color: transparent;
-      background-clip: text;
-      -webkit-background-clip: text;
-      animation: shine 4s linear infinite;
-    }
-
-    @keyframes shine {
-      to { background-position: 200% center; }
-    }
-
-    .hero p {
-      margin-top: 15px;
-      color: #aab3d0;
-      letter-spacing: 4px;
-    }
-
-    .toolbar {
-      max-width: 1100px;
-      margin: auto;
-      padding: 20px;
-      display: flex;
-      gap: 15px;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-
-    .toolbar input {
-      flex: 1;
-      min-width: 220px;
-      padding: 15px 20px;
-      border: 1px solid #343b61;
-      border-radius: 14px;
-      outline: none;
-      color: white;
-      background: #151a30;
-    }
-
-    .gallery {
-      max-width: 1200px;
-      margin: auto;
-      padding: 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 22px;
-    }
-
-    .card {
-      padding: 12px;
-      border: 1px solid #343b61;
-      border-radius: 18px;
-      background: linear-gradient(145deg, #171d35, #0d1122);
-      transition: .3s;
-      overflow: hidden;
-    }
-
-    .card:hover {
-      transform: translateY(-7px);
-      border-color: #00eaff;
-      box-shadow: 0 10px 35px #00eaff25;
-    }
-
-    .brand {
-      text-align: center;
-      padding: 12px;
-      font-weight: 900;
-      letter-spacing: 3px;
-      color: #00eaff;
-      text-shadow: 0 0 15px #00eaff;
-    }
-
-    .card img {
-      width: 100%;
-      display: block;
-      border-radius: 12px;
-      object-fit: contain;
-      cursor: pointer;
-    }
-
-    .card h3 {
-      text-align: center;
-      padding: 15px 5px 8px;
-    }
-
-    .watermark {
-      pointer-events: none;
+      padding: 70px 20px 30px;
       position: relative;
     }
 
-    .watermark::after {
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 30px;
+      background: rgba(0, 234, 255, 0.1);
+      border: 1px solid rgba(0, 234, 255, 0.3);
+      color: var(--accent-cyan);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      box-shadow: 0 0 20px rgba(0, 234, 255, 0.2);
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 7vw, 80px);
+      font-weight: 900;
+      letter-spacing: 4px;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #ffffff 0%, var(--accent-cyan) 50%, var(--accent-purple) 100%);
+      background-size: 200% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: shine 6s ease infinite;
+    }
+
+    @keyframes shine {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .hero p {
+      margin-top: 12px;
+      color: var(--text-sub);
+      font-size: 15px;
+      letter-spacing: 3px;
+      font-weight: 600;
+    }
+
+    /* --- TOOLBAR --- */
+    .sticky-wrapper {
+      position: sticky;
+      top: 15px;
+      z-index: 100;
+      padding: 0 20px;
+      margin-bottom: 35px;
+    }
+
+    .toolbar {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 10px 14px 10px 20px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 20px;
+      background: rgba(13, 17, 34, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .search-box {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .search-box i {
+      color: var(--accent-cyan);
+      font-size: 18px;
+    }
+
+    .search-box input {
+      width: 100%;
+      border: none;
+      outline: none;
+      color: white;
+      background: transparent;
+      font-size: 15px;
+      font-family: inherit;
+    }
+
+    .search-box input::placeholder {
+      color: #64748b;
+    }
+
+    .counter-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(0, 234, 255, 0.1));
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      white-space: nowrap;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .counter-badge i {
+      color: var(--accent-pink);
+    }
+
+    /* --- GALLERY GRID --- */
+    .gallery {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      position: relative;
+      border-radius: 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(10px);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: rgba(0, 234, 255, 0.5);
+      box-shadow: 0 15px 35px rgba(0, 234, 255, 0.15), 0 0 15px rgba(168, 85, 247, 0.1);
+    }
+
+    .brand-header {
+      padding: 14px 15px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-tag {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+    }
+
+    .brand-icon {
+      color: var(--accent-purple);
+      font-size: 12px;
+    }
+
+    .img-container {
+      position: relative;
+      width: 100%;
+      padding-top: 130%; /* Tỉ lệ hiển thị khung ảnh */
+      background: rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .img-container img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .img-container img {
+      transform: scale(1.05);
+    }
+
+    /* Watermark Overlay */
+    .img-container::after {
       content: "DKVL STUDIO";
       position: absolute;
-      bottom: 20px;
-      right: 18px;
-      color: #ffffffa0;
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 2px;
-      text-shadow: 0 0 8px #000;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      padding: 4px 10px;
+      border-radius: 6px;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      pointer-events: none;
+    }
+
+    .card-footer {
+      padding: 16px;
+      text-align: center;
+      background: rgba(10, 14, 29, 0.6);
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-footer h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #f1f5f9;
+      letter-spacing: 1px;
+    }
+
+    /* Lightbox Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(4, 6, 14, 0.9);
+      backdrop-filter: blur(15px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 16px;
+      box-shadow: 0 0 50px rgba(0, 234, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      object-fit: contain;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      color: #fff;
+      font-size: 28px;
+      cursor: pointer;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s;
+    }
+
+    .modal-close:hover {
+      background: var(--accent-pink);
+      transform: rotate(90deg);
+    }
+
+    /* Empty state */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-sub);
+    }
+
+    .empty-state i {
+      font-size: 48px;
+      margin-bottom: 15px;
+      color: #334155;
     }
 
     @media (max-width: 600px) {
-      .gallery {
-        grid-template-columns: 1fr;
-      }
+      .hero { padding-top: 40px; }
+      .gallery { grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); }
+      .sticky-wrapper { padding: 0 10px; }
     }
   </style>
 </head>
 
 <body>
+
   <header class="hero">
+    <div class="hero-badge">
+      <i class="fa-solid fa-crown"></i> Official Archive
+    </div>
     <h1>DKVL STUDIO</h1>
-    <p>PREMIUM BXH ARCHIVE</p>
+    <p>BẢNG XẾP HẠNG CAO CẤP</p>
   </header>
 
-  <div class="toolbar">
-    <input id="search" type="text" placeholder="Tìm kiếm BXH...">
-    <span id="counter">Đang tải BXH...</span>
+  <div class="sticky-wrapper">
+    <div class="toolbar">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input id="search" type="text" placeholder="Tìm kiếm BXH (Ví dụ: BXH 1...)" autocomplete="off">
+      </div>
+      <div class="counter-badge">
+        <i class="fa-solid fa-layer-group"></i>
+        <span id="counter">Đang kiểm tra...</span>
+      </div>
+    </div>
   </div>
 
   <main class="gallery" id="gallery"></main>
+
+  <!-- Lightbox xem ảnh full -->
+  <div class="modal" id="modal">
+    <span class="modal-close" id="modalClose">&times;</span>
+    <img class="modal-content" id="modalImg" alt="Full BXH">
+  </div>
 
   <script>
     const gallery = document.getElementById("gallery");
     const search = document.getElementById("search");
     const counter = document.getElementById("counter");
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modalImg");
+    const modalClose = document.getElementById("modalClose");
 
-    // Tự động tìm ảnh từ 1.png đến 200.png
-    const images = [];
+    const TOTAL_CHECK = 200; // Số lượng thử nghiệm tối đa
+    let validImages = [];    // Lưu danh sách các ảnh load thành công
+    let loadedCount = 0;     // Đếm số lượng thực tế có sẵn
 
-    for (let i = 1; i <= 200; i++) {
-      images.push({
-        name: `BXH ${i}`,
-        src: `${i}.png`
-      });
-    }
-
-    function render(list) {
+    // Khởi tạo danh sách kiểm tra
+    function initGallery() {
       gallery.innerHTML = "";
+      
+      for (let i = 1; i <= TOTAL_CHECK; i++) {
+        const item = {
+          id: i,
+          name: `BXH ${i}`,
+          src: `${i}.png`
+        };
 
-      list.forEach(item => {
+        // Tạo khung thẻ
         const card = document.createElement("article");
         card.className = "card";
+        card.id = `card-${i}`;
 
-        const brand = document.createElement("div");
-        brand.className = "brand";
-        brand.textContent = "✦ DKVL STUDIO ✦";
+        card.innerHTML = `
+          <div class="brand-header">
+            <span class="brand-tag">✦ DKVL STUDIO</span>
+            <i class="fa-solid fa-sparkles brand-icon"></i>
+          </div>
+          <div class="img-container">
+            <img src="${item.src}" alt="${item.name}" loading="lazy" draggable="false">
+          </div>
+          <div class="card-footer">
+            <h3>${item.name}</h3>
+          </div>
+        `;
 
-        const image = document.createElement("img");
-        image.src = item.src;
-        image.alt = item.name;
-        image.loading = "lazy";
-        image.draggable = false;
+        const imgElement = card.querySelector("img");
 
-        image.onerror = () => card.remove();
+        // Khi ảnh load thành công -> Lưu vào mảng hợp lệ và cập nhật bộ đếm
+        imgElement.onload = () => {
+          validImages.push(item);
+          loadedCount++;
+          updateCounter();
+        };
 
-        const title = document.createElement("h3");
-        title.textContent = item.name;
+        // Khi ảnh bị lỗi (Không tồn tại 404) -> Xóa thẻ khỏi DOM
+        imgElement.onerror = () => {
+          card.remove();
+          updateCounter();
+        };
 
-        const wrapper = document.createElement("div");
-        wrapper.className = "watermark";
-        wrapper.appendChild(image);
+        // Sự kiện click mở ảnh xem đầy đủ
+        imgElement.addEventListener("click", () => {
+          modalImg.src = item.src;
+          modal.classList.add("show");
+        });
 
-        card.append(brand, wrapper, title);
         gallery.appendChild(card);
-      });
-
-      counter.textContent = `${list.length} BXH`;
+      }
     }
 
+    // Cập nhật số lượng BXH thực tế hiển thị
+    function updateCounter() {
+      const currentVisible = gallery.querySelectorAll(".card").length;
+      counter.textContent = `${currentVisible} BXH`;
+    }
+
+    // Chức năng lọc tìm kiếm
     search.addEventListener("input", () => {
-      const keyword = search.value.toLowerCase();
+      const keyword = search.value.toLowerCase().trim();
+      let visibleCount = 0;
 
-      render(images.filter(item =>
-        item.name.toLowerCase().includes(keyword)
-      ));
+      validImages.forEach(item => {
+        const card = document.getElementById(`card-${item.id}`);
+        if (!card) return;
+
+        if (item.name.toLowerCase().includes(keyword)) {
+          card.style.display = "flex";
+          visibleCount++;
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      // Hiển thị trạng thái rỗng nếu không tìm thấy kết quả
+      let emptyMsg = document.getElementById("empty-msg");
+      if (visibleCount === 0) {
+        if (!emptyMsg) {
+          emptyMsg = document.createElement("div");
+          emptyMsg.id = "empty-msg";
+          emptyMsg.className = "empty-state";
+          emptyMsg.innerHTML = `
+            <i class="fa-solid fa-box-open"></i>
+            <p>Không tìm thấy kết quả phù hợp với từ khóa "${search.value}"</p>
+          `;
+          gallery.appendChild(emptyMsg);
+        }
+      } else if (emptyMsg) {
+        emptyMsg.remove();
+      }
+
+      counter.textContent = `${visibleCount} BXH`;
     });
 
+    // Đóng Lightbox Modal
+    modalClose.addEventListener("click", () => modal.classList.remove("show"));
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) modal.classList.remove("show");
+    });
+
+    // Chống tải/coppy ảnh đơn giản
     document.addEventListener("contextmenu", event => {
-      if (event.target.tagName === "IMG") {
-        event.preventDefault();
-      }
+      if (event.target.tagName === "IMG") event.preventDefault();
     });
 
-    document.addEventListener("dragstart", event => {
-      if (event.target.tagName === "IMG") {
-        event.preventDefault();
-      }
-    });
-
-    render(images);
+    // Khởi chạy
+    initGallery();
   </script>
 </body>
 </html>
