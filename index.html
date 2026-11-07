@@ -1,703 +1,228 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#030611">
-<title>DKVL STUDIO | NDK BOT</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b16">
+  <title>DKVL STUDIO | BXH</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<style>
-:root {
-    --bg: #030611;
-    --cyan: #21e9ff;
-    --blue: #087cff;
-    --red: #ff283d;
-    --text: #eaf8ff;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    min-height: 100vh;
-    color: var(--text);
-    font-family: 'Chakra Petch', sans-serif;
-    background:
-        radial-gradient(ellipse at 5% 20%, #350710 0, transparent 35%),
-        radial-gradient(ellipse at 95% 25%, #061d50 0, transparent 40%),
-        linear-gradient(145deg, #02040b, #050c1c 55%, #02040a);
-    overflow-x: hidden;
-}
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    opacity: .3;
-    background: repeating-linear-gradient(
-        125deg,
-        transparent 0 90px,
-        rgba(0,172,255,.08) 91px 93px,
-        transparent 94px 180px
-    );
-}
-
-.page {
-    max-width: 1100px;
-    margin: auto;
-    padding: 24px 16px 35px;
-}
-
-/* HEADER */
-
-.hero {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    padding: 25px;
-    border: 1px solid #164b72;
-    border-radius: 20px;
-    background: linear-gradient(
-        110deg,
-        rgba(55,0,15,.85),
-        rgba(4,14,32,.96) 50%,
-        rgba(0,28,70,.9)
-    );
-    box-shadow: 0 0 35px #006cff20;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(
-        90deg, var(--red), transparent 45%,
-        var(--cyan)
-    );
-    box-shadow: 0 0 15px var(--cyan);
-}
-
-.brand-logo {
-    width: 125px;
-    height: 125px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 2px solid var(--cyan);
-    box-shadow: 0 0 25px #007dff70;
-}
-
-.eyebrow {
-    color: var(--cyan);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-}
-
-h1 {
-    margin: 10px 0;
-    font: 900 clamp(22px, 4vw, 42px)/1.15 Orbitron, sans-serif;
-    text-shadow: 0 0 20px #007bff50;
-}
-
-h1 span {
-    color: var(--cyan);
-}
-
-.subtitle {
-    color: #a8bbd1;
-    font-size: 14px;
-}
-
-/* TOOLBAR */
-
-.toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    margin: 25px 0 20px;
-    padding: 15px;
-    border: 1px solid #164b72;
-    border-radius: 12px;
-    background: rgba(3,10,24,.9);
-}
-
-.section-title {
-    font: 800 clamp(12px, 2vw, 17px) Orbitron, sans-serif;
-    letter-spacing: 1px;
-}
-
-.tools {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.search {
-    position: relative;
-}
-
-.search::before {
-    content: "⌕";
-    position: absolute;
-    left: 12px;
-    top: 4px;
-    color: var(--cyan);
-    font-size: 24px;
-}
-
-.search input {
-    width: 220px;
-    padding: 11px 12px 11px 35px;
-    color: white;
-    background: #050c19;
-    border: 1px solid #20557d;
-    border-radius: 9px;
-    outline: none;
-    font: 14px 'Chakra Petch', sans-serif;
-}
-
-.search input:focus {
-    border-color: var(--cyan);
-    box-shadow: 0 0 15px #00d9ff25;
-}
-
-.counter {
-    padding: 10px 12px;
-    white-space: nowrap;
-    border: 1px solid #00cfff75;
-    border-radius: 9px;
-    color: var(--cyan);
-    background: #041526;
-    font: 800 12px Orbitron, sans-serif;
-}
-
-/* GALLERY */
-
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-}
-
-.entry {
-    display: grid;
-    grid-template-columns: 43% 1fr;
-    align-items: center;
-    gap: 15px;
-    padding: 10px;
-    min-width: 0;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid #123f64;
-    border-radius: 14px;
-    background: linear-gradient(
-        115deg,
-        rgba(5,15,32,.98),
-        rgba(4,10,23,.94)
-    );
-    transition: .25s;
-}
-
-.entry::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(var(--red), var(--cyan));
-}
-
-.entry:hover {
-    transform: translateY(-3px);
-    border-color: var(--cyan);
-    box-shadow: 0 8px 28px #006dff25;
-}
-
-.thumb {
-    position: relative;
-    aspect-ratio: 16 / 10;
-    overflow: hidden;
-    border-radius: 9px;
-    border: 1px solid #1a6089;
-    background: #07111f;
-    cursor: zoom-in;
-}
-
-.thumb img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: .3s;
-}
-
-.thumb:hover img {
-    transform: scale(1.05);
-}
-
-.number {
-    position: absolute;
-    top: 7px;
-    left: 7px;
-    padding: 5px 9px;
-    color: white;
-    background: #041426e8;
-    border: 1px solid #45e9ff;
-    border-radius: 6px;
-    font: 800 13px Orbitron, sans-serif;
-}
-
-.info {
-    min-width: 0;
-}
-
-.item-title {
-    font: 800 clamp(13px, 1.5vw, 19px) Orbitron, sans-serif;
-    overflow-wrap: anywhere;
-}
-
-.tag {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 5px 10px;
-    color: var(--cyan);
-    background: #041c2b;
-    border: 1px solid #00cfff8a;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 700;
-}
-
-.empty {
-    grid-column: 1 / -1;
-    padding: 35px 15px;
-    text-align: center;
-    color: #8ba5c0;
-    border: 1px dashed #24506e;
-    border-radius: 12px;
-}
-
-/* FOOTER */
-
-.footer {
-    margin-top: 30px;
-    padding: 18px;
-    text-align: center;
-    border: 1px dashed #1976a4;
-    border-radius: 12px;
-    background: linear-gradient(
-        90deg, #25071170, #06203d90
-    );
-    color: var(--cyan);
-    font: 800 clamp(12px, 2vw, 16px) Orbitron, sans-serif;
-    letter-spacing: 2px;
-    text-shadow: 0 0 12px #00eaff60;
-}
-
-.hint {
-    margin-top: 15px;
-    text-align: center;
-    color: #718ca8;
-    font-size: 12px;
-}
-
-/* LIGHTBOX */
-
-.overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: rgba(1,4,13,.96);
-    backdrop-filter: blur(10px);
-}
-
-.overlay.active {
-    display: flex;
-}
-
-.lightbox-image {
-    max-width: 95%;
-    max-height: 88vh;
-    object-fit: contain;
-    border: 1px solid var(--cyan);
-    border-radius: 10px;
-    box-shadow: 0 0 35px #007bff40;
-}
-
-.close {
-    position: absolute;
-    top: 15px;
-    right: 18px;
-    width: 45px;
-    height: 45px;
-    color: var(--cyan);
-    background: #041528;
-    border: 1px solid var(--cyan);
-    border-radius: 50%;
-    font-size: 28px;
-    cursor: pointer;
-}
-
-/* MOBILE */
-
-@media(max-width: 650px) {
-    .page {
-        padding: 14px 11px 25px;
+    body {
+      min-height: 100vh;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      background:
+        radial-gradient(circle at 50% 0%, #25205a 0, transparent 38%),
+        linear-gradient(135deg, #080b16, #10152a);
     }
 
     .hero {
-        gap: 13px;
-        padding: 15px;
+      text-align: center;
+      padding: 65px 20px 35px;
     }
 
-    .brand-logo {
-        width: 76px;
-        height: 76px;
+    .hero h1 {
+      font-size: clamp(38px, 8vw, 76px);
+      font-weight: 900;
+      letter-spacing: 5px;
+      background: linear-gradient(90deg, #00eaff, #a855f7, #ff3cac);
+      background-size: 200% auto;
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      animation: shine 4s linear infinite;
     }
 
-    .eyebrow {
-        font-size: 9px;
-        letter-spacing: 1px;
+    @keyframes shine {
+      to { background-position: 200% center; }
     }
 
-    h1 {
-        font-size: clamp(16px, 4.5vw, 25px);
-    }
-
-    .subtitle {
-        font-size: 11px;
+    .hero p {
+      margin-top: 15px;
+      color: #aab3d0;
+      letter-spacing: 4px;
     }
 
     .toolbar {
-        align-items: stretch;
-        flex-direction: column;
-        padding: 12px;
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+      display: flex;
+      gap: 15px;
+      justify-content: space-between;
+      flex-wrap: wrap;
     }
 
-    .tools {
-        width: 100%;
-    }
-
-    .search {
-        flex: 1;
-        min-width: 0;
-    }
-
-    .search input {
-        width: 100%;
+    .toolbar input {
+      flex: 1;
+      min-width: 220px;
+      padding: 15px 20px;
+      border: 1px solid #343b61;
+      border-radius: 14px;
+      outline: none;
+      color: white;
+      background: #151a30;
     }
 
     .gallery {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      padding: 12px;
+      border: 1px solid #343b61;
+      border-radius: 18px;
+      background: linear-gradient(145deg, #171d35, #0d1122);
+      transition: .3s;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: #00eaff;
+      box-shadow: 0 10px 35px #00eaff25;
+    }
+
+    .brand {
+      text-align: center;
+      padding: 12px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: #00eaff;
+      text-shadow: 0 0 15px #00eaff;
+    }
+
+    .card img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+      object-fit: contain;
+      cursor: pointer;
+    }
+
+    .card h3 {
+      text-align: center;
+      padding: 15px 5px 8px;
+    }
+
+    .watermark {
+      pointer-events: none;
+      position: relative;
+    }
+
+    .watermark::after {
+      content: "DKVL STUDIO";
+      position: absolute;
+      bottom: 20px;
+      right: 18px;
+      color: #ffffffa0;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-shadow: 0 0 8px #000;
+    }
+
+    @media (max-width: 600px) {
+      .gallery {
         grid-template-columns: 1fr;
-        gap: 11px;
+      }
     }
-
-    .entry {
-        grid-template-columns: 40% 1fr;
-        gap: 13px;
-    }
-
-    .item-title {
-        font-size: 16px;
-    }
-}
-
-@media(prefers-reduced-motion: reduce) {
-    * {
-        transition: none !important;
-    }
-}
-</style>
+  </style>
 </head>
 
 <body>
-<main class="page">
+  <header class="hero">
+    <h1>DKVL STUDIO</h1>
+    <p>PREMIUM BXH ARCHIVE</p>
+  </header>
 
-    <!-- HEADER -->
-    <header class="hero">
-        <!-- Đặt logo.jpg cùng thư mục với index.html -->
-        <img class="brand-logo"
-             src="logo.jpg"
-             alt="DKVL Studio Bot Chat">
+  <div class="toolbar">
+    <input id="search" type="text" placeholder="Tìm kiếm BXH...">
+    <span id="counter">Đang tải BXH...</span>
+  </div>
 
-        <div>
-            <div class="eyebrow">
-                NDK BOT • RANKING ARCHIVE
-            </div>
+  <main class="gallery" id="gallery"></main>
 
-            <h1>
-                DKVL <span>STUDIO</span><br>
-                BOT CHAT
-            </h1>
-
-            <p class="subtitle">
-                Lưu trữ lịch sử bảng xếp hạng
-            </p>
-        </div>
-    </header>
-
-    <!-- SEARCH -->
-    <section class="toolbar">
-        <div class="section-title">
-            LỊCH SỬ BẢNG XẾP HẠNG
-        </div>
-
-        <div class="tools">
-            <label class="search">
-                <input
-                    id="search-input"
-                    type="search"
-                    placeholder="Tìm số BXH..."
-                    aria-label="Tìm số BXH">
-            </label>
-
-            <div class="counter" id="counter">
-                Đang tải...
-            </div>
-        </div>
-    </section>
-
-    <!-- LIST BXH -->
-    <section class="gallery" id="gallery"></section>
-
-    <p class="hint">
-        Chọn ảnh để xem bản lớn • Nhấn ESC để đóng
-    </p>
-
-    <footer class="footer" id="footer" hidden>
-        ✦ NDKBOT THANK YOU ✦
-    </footer>
-
-</main>
-
-<!-- LIGHTBOX -->
-<div class="overlay" id="lightbox"
-     role="dialog"
-     aria-modal="true"
-     aria-label="Xem ảnh BXH">
-
-    <button class="close" id="close-btn"
-            aria-label="Đóng ảnh">×</button>
-
-    <img class="lightbox-image"
-         id="lightbox-img"
-         alt="Bảng xếp hạng phóng to">
-</div>
-
-<script>
-(() => {
-    // Ảnh BXH đặt cạnh index.html:
-    // 1.png, 2.png, 3.jpg, 4.webp...
-    const FORMATS = ["png", "jpg", "jpeg", "webp"];
-
-    const BATCH_SIZE = 12;
-    const MAX_SCAN = 600;
-
+  <script>
     const gallery = document.getElementById("gallery");
+    const search = document.getElementById("search");
     const counter = document.getElementById("counter");
-    const search = document.getElementById("search-input");
-    const overlay = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightbox-img");
-    const footer = document.getElementById("footer");
 
-    let entries = [];
+    // Tự động tìm ảnh từ 1.png đến 200.png
+    const images = [];
 
-    // Tìm ảnh theo số thứ tự
-    function findImage(index) {
-        return new Promise(resolve => {
-            let pending = FORMATS.length;
-            let done = false;
-
-            for (const ext of FORMATS) {
-                const path = `${index}.${ext}`;
-                const img = new Image();
-
-                img.onload = () => {
-                    if (!done) {
-                        done = true;
-                        resolve(path);
-                    }
-                };
-
-                img.onerror = () => {
-                    pending--;
-
-                    if (pending === 0 && !done) {
-                        resolve(null);
-                    }
-                };
-
-                img.src = path;
-            }
-        });
+    for (let i = 1; i <= 200; i++) {
+      images.push({
+        name: `BXH ${i}`,
+        src: `${i}.png`
+      });
     }
 
-    // Tạo thẻ BXH
-    function addEntry(index, src) {
+    function render(list) {
+      gallery.innerHTML = "";
+
+      list.forEach(item => {
         const card = document.createElement("article");
-        card.className = "entry";
-        card.dataset.index = String(index);
+        card.className = "card";
 
-        const thumb = document.createElement("div");
-        thumb.className = "thumb";
+        const brand = document.createElement("div");
+        brand.className = "brand";
+        brand.textContent = "✦ DKVL STUDIO ✦";
 
-        const img = document.createElement("img");
-        img.src = src;
-        img.alt = `BXH #${index}`;
-        img.loading = "lazy";
-        img.decoding = "async";
+        const image = document.createElement("img");
+        image.src = item.src;
+        image.alt = item.name;
+        image.loading = "lazy";
+        image.draggable = false;
 
-        const number = document.createElement("span");
-        number.className = "number";
-        number.textContent = index;
+        image.onerror = () => card.remove();
 
-        thumb.append(img, number);
+        const title = document.createElement("h3");
+        title.textContent = item.name;
 
-        thumb.addEventListener("click", () => {
-            openLightbox(src);
-        });
+        const wrapper = document.createElement("div");
+        wrapper.className = "watermark";
+        wrapper.appendChild(image);
 
-        const info = document.createElement("div");
-        info.className = "info";
+        card.append(brand, wrapper, title);
+        gallery.appendChild(card);
+      });
 
-        const title = document.createElement("div");
-        title.className = "item-title";
-        title.textContent = `BXH #${index}`;
-
-        const tag = document.createElement("span");
-        tag.className = "tag";
-        tag.textContent = `BẢNG XẾP HẠNG ${index}`;
-
-        info.append(title, tag);
-        card.append(thumb, info);
-
-        gallery.append(card);
-        entries.push(card);
+      counter.textContent = `${list.length} BXH`;
     }
 
-    // Tìm kiếm BXH
-    function updateFilter() {
-        const q = search.value.trim().replace(/^#/, "");
-        let shown = 0;
+    search.addEventListener("input", () => {
+      const keyword = search.value.toLowerCase();
 
-        entries.forEach(card => {
-            const matches =
-                !q || card.dataset.index.includes(q);
-
-            card.hidden = !matches;
-
-            if (matches) shown++;
-        });
-
-        counter.textContent = `${shown} / ${entries.length}`;
-
-        const oldMessage = gallery.querySelector(".empty");
-        if (oldMessage) oldMessage.remove();
-
-        if (entries.length && shown === 0) {
-            const msg = document.createElement("div");
-            msg.className = "empty";
-            msg.textContent =
-                "Không tìm thấy bảng xếp hạng phù hợp.";
-            gallery.append(msg);
-        }
-    }
-
-    // Tải ảnh tự động
-    async function loadGallery() {
-        let index = 1;
-        let missingStreak = 0;
-
-        while (index <= MAX_SCAN &&
-               missingStreak < BATCH_SIZE) {
-
-            const batch = await Promise.all(
-                Array.from(
-                    { length: BATCH_SIZE },
-                    (_, i) => findImage(index + i)
-                )
-            );
-
-            batch.forEach((src, offset) => {
-                const n = index + offset;
-
-                if (src) {
-                    addEntry(n, src);
-                    missingStreak = 0;
-                } else {
-                    missingStreak++;
-                }
-            });
-
-            index += BATCH_SIZE;
-
-            // Dừng khi gặp 12 số liên tục không có ảnh
-            if (missingStreak >= BATCH_SIZE) break;
-        }
-
-        footer.hidden = entries.length === 0;
-
-        updateFilter();
-
-        if (!entries.length) {
-            const msg = document.createElement("div");
-            msg.className = "empty";
-            msg.textContent =
-                "Chưa có ảnh BXH. Hãy đặt ảnh 1.png, 2.png... cạnh file HTML.";
-            gallery.append(msg);
-        }
-    }
-
-    // Mở ảnh lớn
-    function openLightbox(src) {
-        lightboxImg.src = src;
-        overlay.classList.add("active");
-        document.body.style.overflow = "hidden";
-        document.getElementById("close-btn").focus();
-    }
-
-    // Đóng ảnh lớn
-    function closeLightbox() {
-        overlay.classList.remove("active");
-        lightboxImg.src = "";
-        document.body.style.overflow = "";
-    }
-
-    search.addEventListener("input", updateFilter);
-
-    document.getElementById("close-btn")
-        .addEventListener("click", closeLightbox);
-
-    overlay.addEventListener("click", e => {
-        if (e.target === overlay) closeLightbox();
+      render(images.filter(item =>
+        item.name.toLowerCase().includes(keyword)
+      ));
     });
 
-    document.addEventListener("keydown", e => {
-        if (e.key === "Escape") closeLightbox();
+    document.addEventListener("contextmenu", event => {
+      if (event.target.tagName === "IMG") {
+        event.preventDefault();
+      }
     });
 
-    loadGallery();
-})();
-</script>
+    document.addEventListener("dragstart", event => {
+      if (event.target.tagName === "IMG") {
+        event.preventDefault();
+      }
+    });
 
+    render(images);
+  </script>
 </body>
 </html>
